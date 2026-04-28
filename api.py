@@ -12,5 +12,4 @@ def health():
 
 @app.post("/query", response_model=QueryResponse)
 def query_rag(req: QueryRequest):
-    result = run_rag(query=req.query, knowledge_dir=req.knowledge_dir)
-    return result
+    return run_rag(query=req.query, knowledge_dir=req.knowledge_dir)

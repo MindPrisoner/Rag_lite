@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv("API_KEY")
+API_KEY = os.getenv("DASHSCOPE_API_KEY") or os.getenv("API_KEY")
 BASE_URL = os.getenv("BASE_URL")
 MODEL_NAME = os.getenv("MODEL_NAME")
 
@@ -13,7 +13,7 @@ CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "40"))
 KNOWLEDGE_DIR = os.getenv("KNOWLEDGE_DIR", "knowledge")
 
 if not API_KEY:
-    raise ValueError("缺少 API_KEY，请检查 .env")
+    raise ValueError("缺少 API_KEY，请先在系统环境变量中设置 DASHSCOPE_API_KEY")
 if not BASE_URL:
     raise ValueError("缺少 BASE_URL，请检查 .env")
 if not MODEL_NAME:
