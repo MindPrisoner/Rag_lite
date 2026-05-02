@@ -95,3 +95,52 @@ LLM / RAG 学习项目
 求职展示项目
 AI 应用工程化练手项目
 后续 LangChain / Agent 系统的基础模块
+
+
+
+
+## LangGraph 多工具 Agent
+
+在 RAG Lite 的基础上，本项目进一步实现了 LangGraph 多工具工作流，支持：
+
+- RAG 知识库问答
+- 单文档总结
+- 双文档对比
+- 模糊请求澄清
+- 多轮短期记忆
+- FastAPI 接口
+- Gradio 页面展示
+
+### 运行 Agent CLI
+
+```bash
+python -m agent_stage.agent_cli --dir knowledge --query "RAG 的核心流程是什么？"
+
+
+
+运行多轮记忆 CLI
+python -m agent_stage.memory_cli --dir knowledge --thread-id demo
+运行 Agent API
+uvicorn agent_stage.agent_api:app --reload
+
+访问：
+
+http://127.0.0.1:8000/docs
+运行 Agent Gradio 页面
+python -m agent_stage.agent_gradio
+
+访问：
+
+http://127.0.0.1:7861
+Agent 工作流
+用户请求
+  ↓
+Router 路由节点
+  ↓
+选择工具：rag_qa / summarize_doc / compare_docs / clarify
+  ↓
+执行工具
+  ↓
+Finalize 汇总输出
+  ↓
+更新历史记忆
